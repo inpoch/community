@@ -2,9 +2,13 @@ package com.guan.community.entity;
 
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
+
+import java.util.Date;
 
 @Data
 @Getter
+@Setter
 public class User {
     private int id;
     private String username;
@@ -15,5 +19,6 @@ public class User {
     private int status;
     private String activationCode;
     private String headerUrl;
-    private String createTime;
+    private Date createTime;
+
 }

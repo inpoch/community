@@ -36,12 +36,8 @@
 <!--    int insertUser(User user);-->
     <insert id="insertUser" keyProperty="id">
         insert into user(username,password,salt,email,type,status,activation_code,header_url,create_time)
-        values(#{username},#{password},#{salt},#{email},#{type},#{status},#{ativationCode},#{headerUrl},createTime)
+        values(#{username},#{password},#{salt},#{email},#{type},#{status},#{activationCode},#{headerUrl},#{createTime})
     </insert>
-<!--    <insert id="insertUser">-->
-<!--        insert into user(user_id,username,password,salt,email,type,status,activation_code,header_url,create_time)-->
-<!--        values(#{userId},#{username},#{password},#{salt},#{email},#{type},#{status},#{ativationCode},#{headerUrl},createTime)-->
-<!--    </insert>-->
 
 <!--    int updateStatus(int id,int status);-->
     <update id="updateStatus">
@@ -55,6 +51,6 @@
 
 <!--    int updatePassword(int id,String password);-->
     <update id="updatePassword">
-        update user set password = #{password} where id = #{id}
+        update user set password = #{password},salt = #{salt} where id = #{id}
     </update>
 </mapper>
