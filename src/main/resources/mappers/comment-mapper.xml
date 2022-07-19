@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guan.community.dao.CommentMapper">
+
+    <sql id="selectFields">
+        id, user_id, entity_id, entity_type, target_id, content, status, create_time
+    </sql>
+
+    <sql id="insertFields">
+        user_id, entity_id, entity_type, target_id, content, status, create_time
+    </sql>
+
+    <!--    List<Comment> selectCommentsByEntity(@Param("entityId") int entityId, @Param("entityType") int entityType);-->
+    <select id="selectCommentsByEntity" resultType="Comment">
+        select <include refid="selectFields"></include>
+        from comment
+        where entity_type = #{entityType} and entity_Id = #{entityId}
+        and status = 0
+        order by create_time asc
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--    int selectCountByEntity(@Param("entityId") int entityId, @Param("entityType") int entityType);-->
+    <select id="selectCountByEntity" resultType="int">
+        select count(id)
+        from comment
+        where entity_type = #{entityType} and entity_Id = #{entityId}
+        and status = 0
+    </select>
+
+<!--    int insertComment(Comment comment);-->
+    <insert id="insertComment" parameterType="Comment">
+        insert into comment(<include refid="insertFields"></include>)
+        values (#{userId}, #{entityId}, #{entityType}, #{targetId}, #{content}, #{status}, #{createTime})
+    </insert>
+
+<!--    int selectCommentsByUserId(int userId);-->
+    <select id="selectCommentsByUserId" resultType="Comment">
+        select <include refid="selectFields"></include>
+        from comment
+        where user_id = #{userId}
+    </select>
+
+<!--    public Comment selectCommentById(int entityId)-->
+    <select id="selectCommentById" resultType="Comment">
+        select <include refid="selectFields"></include>
+        from comment
+        where id = #{id}
+    </select>
+
+</mapper>

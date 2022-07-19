@@ -6,7 +6,7 @@ import com.guan.community.dao.UserMapper;
 import com.guan.community.entity.DiscussPost;
 import com.guan.community.entity.LoginTicket;
 import com.guan.community.entity.User;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
